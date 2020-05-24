@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const authenticate = require('./api/middleware/authenticate');
 
+app.use(cors());
+
 mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://'+ process.env.MONGODB_USERNAME +':'+ process.env.MONGODB_PASSWORD +'@cluster0-vgwyw.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true,useFindAndModify: false});
 
 const adminRoutes = require('./api/routes/admins');
@@ -14,7 +16,7 @@ const productRoutes = require('./api/routes/products');
 const cartItemRoutes = require('./api/routes/cartItems');
 const orderRoutes = require('./api/routes/orders');
 
-app.use(cors());
+
 app.use(express.json());
 
 app.use('/admin', adminRoutes);
